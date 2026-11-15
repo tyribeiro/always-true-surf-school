@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Always True Surf School — Surf Lessons on Oʻahu</title>
+<meta name="description" content="Private and group surf lessons on Oʻahu. Book now, pay later.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Tropical Sunrise palette: #FF9F1C #FFBF69 #FFFFFF #CBF3F0 #2EC4B6 */
+  --black:#fffbf5; --ink:#f1fbfa; --panel:#ffffff; --line:rgba(46,196,182,.28);
+  --burgundy:#2EC4B6; --burgundy-2:#CBF3F0; --wine:#2EC4B6;
+  --gold:#FF9F1C; --gold-2:#FFBF69; --cream:#0d3b40; --muted:#4d6e72;
+  --orange-ink:#d97706; --teal-ink:#14897e;
+  --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{width:min(1200px,92vw);margin:0 auto}
+.display{font-family:'Unbounded',sans-serif;letter-spacing:-.02em;line-height:1.02}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-ink);font-weight:600}
+.eyebrow::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:10px;box-shadow:0 0 12px var(--gold);vertical-align:middle}
+.gold-text{background:linear-gradient(100deg,#FF9F1C,#f58a0b 40%,#2EC4B6);-webkit-background-clip:text;background-clip:text;color:transparent}
+section{position:relative;padding:120px 0}
+h2.display{font-size:clamp(2.1rem,5vw,3.8rem);font-weight:600;margin:18px 0 18px}
+.lead{color:var(--muted);max-width:560px;font-size:1.08rem}
+.center{text-align:center}.center .lead{margin:0 auto}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:.98rem;cursor:pointer;border:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .35s;position:relative;overflow:hidden;font-family:inherit}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#3a1f00;box-shadow:0 10px 40px -10px rgba(255,159,28,.6)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 50px -12px rgba(255,159,28,.8)}
+.btn-ghost{background:rgba(255,255,255,.75);color:var(--cream);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.btn-ghost:hover{border-color:var(--gold);transform:translateY(-3px)}
+.btn .arrow{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--orange-ink);transition:transform .35s}
+.btn-ghost .arrow{background:var(--burgundy);color:#fff}
+.btn:hover .arrow{transform:rotate(-45deg)}
+
+/* Nav */
+nav{position:fixed;inset:18px 0 auto;z-index:50;display:flex;justify-content:center;pointer-events:none}
+.nav-inner{pointer-events:auto;width:min(1200px,92vw);display:flex;align-items:center;justify-content:space-between;padding:10px 10px 10px 22px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid var(--line);box-shadow:0 10px 40px -20px rgba(13,59,64,.25);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:background .4s}
+nav.scrolled .nav-inner{background:rgba(255,255,255,.94)}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Unbounded';font-weight:800;font-size:1rem;letter-spacing:.04em}
+.logo svg{width:30px;height:30px}
+.nav-links{display:flex;gap:30px;font-size:.92rem;color:var(--muted)}
+.nav-links a{position:relative;transition:color .3s}
+.nav-links a:hover{color:var(--orange-ink)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--gold);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+nav .btn{padding:11px 20px}
+.burger{display:none;background:none;border:0;color:var(--cream);font-size:1.4rem;cursor:pointer;padding:6px 12px}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,#ffe8c7 0%,#fff6ea 30%,#ffffff 55%,#e9faf8 100%);min-height:100vh;padding:130px 0 60px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;text-align:center}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(55% 40% at 50% 8%,rgba(255,159,28,.30),transparent 70%),
+  radial-gradient(60% 45% at 50% 70%,rgba(46,196,182,.22),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%);opacity:.35}
+.hero-top{position:relative;z-index:3}
+.hero h1{font-size:clamp(2.2rem,8.4vw,7.6rem);white-space:nowrap;font-weight:800;margin-top:18px;text-transform:uppercase}
+.hero h1 span{display:block}
+.hero-stage{position:relative;width:min(1100px,96vw);height:min(62vh,560px);margin-top:-6vw;z-index:2}
+#wave{position:absolute;inset:0;width:100%;height:100%;cursor:grab}
+#wave:active{cursor:grabbing}
+.hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);opacity:.7;pointer-events:none}
+.tag{position:absolute;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.8);backdrop-filter:blur(6px);display:flex;align-items:center;gap:8px;animation:float 6s ease-in-out infinite;pointer-events:none}
+.tag i{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.tag:nth-child(odd){animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-10px)}}
+.hero-bottom{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:26px;margin-top:10px}
+.hero-bottom p{max-width:520px;color:var(--muted);font-size:1.1rem}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.paylater{font-size:.8rem;color:var(--orange-ink);font-weight:600;letter-spacing:.08em}
+
+/* Marquee */
+.marquee{padding:26px 0;overflow:hidden;background:linear-gradient(90deg,#2EC4B6,#25b1a4,#2EC4B6)}
+.marquee p{text-align:center;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:#fff;opacity:.85;margin-bottom:18px}
+.track{display:flex;gap:60px;width:max-content;animation:scroll 32s linear infinite}
+.track span{font-family:'Unbounded';font-size:1.25rem;color:#fff;display:flex;align-items:center;gap:60px;white-space:nowrap}
+.track span::after{content:"✦";color:#FFBF69;opacity:1;font-size:.9rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end}
+.stat-card{border:1px solid var(--line);border-radius:var(--r);padding:34px;background:linear-gradient(160deg,#CBF3F0,#ffffff);position:relative;overflow:hidden}
+.stat-card .big{font-family:'Unbounded';font-size:clamp(3rem,6vw,4.6rem);font-weight:800}
+.stat-card p{color:var(--muted)}
+.about-sub{margin-top:70px;display:grid;grid-template-columns:1fr 1fr;gap:60px;padding-top:50px;border-top:1px solid var(--line)}
+.about-sub h3{font-family:'Unbounded';font-size:1.6rem;font-weight:600;line-height:1.2}
+
+/* Cards (lessons) */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
+.card{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:0 30px 34px;box-shadow:0 20px 50px -30px rgba(13,59,64,.25);background:var(--panel);overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s;display:flex;flex-direction:column;min-height:420px}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(500px circle at var(--mx,50%) var(--my,0%),rgba(255,159,28,.14),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none}
+.card:hover{transform:translateY(-8px);border-color:rgba(255,159,28,.5)}
+.card:hover::before{opacity:1}
+.card .num{font-family:'Unbounded';color:var(--orange-ink);font-size:.85rem;letter-spacing:.1em}
+.card h3{font-family:'Unbounded';font-size:1.45rem;font-weight:600;margin:22px 0 10px;line-height:1.2}
+.card p{color:var(--muted);font-size:.98rem}
+.price{margin:26px 0 6px;font-family:'Unbounded';font-size:3rem;font-weight:800}
+.price small{font-family:'Space Grotesk';font-size:1rem;font-weight:500;color:var(--muted)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 26px}
+.pills span{font-size:.78rem;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.card .btn{margin-top:auto;align-self:flex-start}
+.card.featured{background:linear-gradient(170deg,#e2f8f6,#ffffff 70%);border-color:rgba(255,159,28,.4)}
+.badge{position:absolute;top:18px;right:18px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--gold);color:#3a1f00;font-weight:600;z-index:2}
+
+/* Card photos */
+.card-img{margin:0 -30px 26px;height:210px;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.card:hover .card-img img{transform:scale(1.07)}
+.card-img::after{content:"";position:absolute;inset:auto 0 0;height:50%;background:linear-gradient(transparent,rgba(255,255,255,.0))}
+
+/* Meet Charlie */
+.owner{background:linear-gradient(180deg,var(--black),#e9faf8)}
+.owner-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.owner-photo{position:relative;border-radius:28px;overflow:visible}
+.owner-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:28px;display:block;box-shadow:0 40px 80px -40px rgba(13,59,64,.5);transition:transform .2s ease-out;will-change:transform}
+.owner-photo::before{content:"";position:absolute;inset:22px -22px -22px 22px;border-radius:28px;background:linear-gradient(140deg,#FFBF69,#2EC4B6);z-index:-1}
+.owner-chip{position:absolute;left:-18px;bottom:34px;background:#fff;border-radius:18px;padding:16px 20px;box-shadow:0 20px 50px -20px rgba(13,59,64,.35);display:flex;gap:14px;align-items:center}
+.owner-chip b{font-family:'Unbounded';font-size:1.9rem;line-height:1}
+.owner-chip span{font-size:.82rem;color:var(--muted);line-height:1.3}
+.owner h2 .sig{display:block;font-size:.5em;margin-top:10px;color:var(--muted);font-weight:400;font-family:'Space Grotesk';letter-spacing:.02em}
+.owner .bio{font-size:1.15rem;color:var(--cream);margin-bottom:18px;max-width:560px}
+.owner .bio + .bio{color:var(--muted);font-size:1.02rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0 34px}
+.fact{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}
+.fact b{display:block;font-family:'Unbounded';font-size:1.5rem}
+.fact span{font-size:.85rem;color:var(--muted)}
+
+/* Charlie sunset banner */
+.owner-banner{position:relative;margin-top:70px;border-radius:30px;overflow:hidden;box-shadow:0 40px 90px -45px rgba(13,59,64,.55)}
+.owner-banner img{width:100%;height:clamp(300px,46vw,560px);object-fit:cover;display:block;transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.owner-banner.in img{transform:scale(1)}
+.owner-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(13,59,64,.65))}
+.owner-banner figcaption{position:absolute;left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px);bottom:clamp(20px,4vw,40px);z-index:2;color:#fff}
+.owner-banner figcaption span{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:#FFBF69}
+.owner-banner figcaption b{display:block;font-family:'Unbounded';font-weight:600;font-size:clamp(1.3rem,3vw,2.2rem);line-height:1.15;margin-top:8px;max-width:640px}
+
+.socials{display:flex;gap:10px;margin-top:20px}
+.socials a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:#fff;color:var(--teal-ink);transition:transform .3s,background .3s,color .3s}
+.socials a:hover{transform:translateY(-3px);background:var(--burgundy);color:#fff}
+.socials svg{width:20px;height:20px}
+.owner-ctas{display:flex;gap:12px;flex-wrap:wrap}
+/* Gallery */
+.gallery{padding:40px 0 120px;overflow:hidden}
+.gal-track{display:flex;gap:20px;width:max-content;animation:scroll 45s linear infinite}
+.gallery:hover .gal-track{animation-play-state:paused}
+.gal-track figure{height:380px;border-radius:24px;overflow:hidden;flex:none;position:relative;box-shadow:0 30px 60px -35px rgba(13,59,64,.4)}
+.gal-track img{height:100%;width:auto;display:block;transition:transform 1s}
+.gal-track figure:hover img{transform:scale(1.05)}
+.gal-track figcaption{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.9);padding:7px 14px;border-radius:999px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream)}
+
+/* Process */
+.process{background:linear-gradient(180deg,var(--black),var(--ink) 40%,var(--black))}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px;counter-reset:s}
+.step{border-top:1px solid var(--line);padding-top:30px;position:relative}
+.step::before{content:"";position:absolute;top:-1px;left:0;height:1px;width:0;background:var(--gold);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.step.in::before{width:100%}
+.step .n{font-family:'Unbounded';font-size:4.5rem;font-weight:800;color:transparent;-webkit-text-stroke:1.5px rgba(255,159,28,.8);line-height:1}
+.step h3{font-family:'Unbounded';font-size:1.3rem;font-weight:600;margin:24px 0 10px}
+.step p{color:var(--muted)}
+
+/* Impact */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:60px}
+.stat{border:1px solid var(--line);border-radius:var(--r);padding:34px 26px;background:var(--panel);transition:border-color .4s}
+.stat:hover{border-color:var(--gold)}
+.stat .v{font-family:'Unbounded';font-size:clamp(2.4rem,4vw,3.4rem);font-weight:800}
+.stat p{color:var(--muted);margin-top:6px}
+
+/* Why */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:60px}
+.why .item{border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;background:linear-gradient(180deg,rgba(46,196,182,.18),transparent);transition:transform .45s,border-color .4s}
+.why .item:hover{transform:translateY(-6px);border-color:rgba(255,159,28,.5)}
+.icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:#CBF3F0;color:var(--orange-ink);margin-bottom:26px;box-shadow:inset 0 0 0 1px rgba(46,196,182,.4)}
+.icon svg{width:26px;height:26px}
+.why .tagn{font-size:.78rem;color:var(--orange-ink);letter-spacing:.12em}
+.why h3{font-family:'Unbounded';font-size:1.1rem;font-weight:600;margin:10px 0}
+.why p{color:var(--muted);font-size:.95rem}
+
+/* Testimonials */
+.tslider{overflow:hidden;margin-top:60px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ttrack{display:flex;gap:22px;width:max-content;animation:scroll 40s linear infinite}
+.tslider:hover .ttrack{animation-play-state:paused}
+.tcard{width:360px;border:1px dashed rgba(255,159,28,.35);border-radius:var(--r);padding:30px;background:var(--panel)}
+.stars{color:var(--gold);text-shadow:0 0 1px #d97706;letter-spacing:3px}
+.tcard p{color:var(--muted);margin:16px 0 24px;font-style:italic}
+.who{display:flex;align-items:center;gap:12px}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--burgundy),var(--gold));display:grid;place-items:center;font-family:'Unbounded';font-size:.8rem;color:#fff}
+.who b{display:block;font-weight:600}.who small{color:var(--muted)}
+.ttrack.static{animation:none;width:auto;justify-content:center;flex-wrap:wrap;padding:0 4vw}
+.rv-empty{display:none;text-align:center;max-width:520px;margin:50px auto 0;padding:40px 30px;border:1px dashed var(--line);border-radius:var(--r);background:#fff}
+.rv-empty.show{display:block}
+.rv-empty h3{font-family:'Unbounded';font-size:1.3rem;margin:12px 0 8px}
+.rv-empty p{color:var(--muted)}
+.note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:20px;opacity:.7}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+.acc{border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;background:none;border:0;color:var(--cream);font:inherit;font-size:1.1rem;font-weight:500;text-align:left;padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer}
+.q button .pm{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--orange-ink);transition:transform .4s,background .4s}
+.q.open button .pm{transform:rotate(45deg);background:var(--burgundy);color:#fff}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+.q.open .a{grid-template-rows:1fr}
+.q .a > div{overflow:hidden}
+.q .a p{color:var(--muted);padding-bottom:26px;max-width:620px}
+
+/* Booking */
+.booking{background:radial-gradient(70% 60% at 50% 0%,rgba(46,196,182,.45),transparent 70%)}
+.book-shell{margin-top:50px;border:1px solid var(--line);border-radius:28px;background:var(--panel);overflow:hidden}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.tab{background:none;border:0;color:var(--muted);font:inherit;padding:22px 18px;cursor:pointer;text-align:left;border-right:1px solid var(--line);transition:background .3s,color .3s;position:relative}
+.tab:last-child{border-right:0}
+.tab b{display:block;font-family:'Unbounded';font-weight:600;font-size:1rem;color:var(--cream);margin-bottom:4px}
+.tab.active{background:linear-gradient(180deg,rgba(46,196,182,.6),rgba(46,196,182,.15));color:var(--cream)}
+.tab.active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold)}
+.tab .tp{color:var(--gold);font-weight:600}
+#calendly-embed{min-width:320px;height:720px}
+.fallback{display:none;padding:60px 30px;text-align:center}
+.fallback.show{display:block}
+.fallback h3{font-family:'Unbounded';font-size:1.5rem;margin-bottom:10px}
+.fallback p{color:var(--muted);max-width:520px;margin:0 auto 28px}
+.book-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px 26px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+.book-foot b{color:var(--orange-ink)}
+
+/* Pay with Cash App */
+.payrow{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:22px 26px;border-top:1px solid var(--line);background:linear-gradient(90deg,#f1fbfa,#fff)}
+.payrow h4{font-family:'Unbounded';font-size:1.05rem;font-weight:600;margin-bottom:4px}
+.payrow p{color:var(--muted);font-size:.92rem}
+.btn-cash{background:#00D64F;color:#fff;box-shadow:0 10px 30px -12px rgba(0,214,79,.7)}
+.btn-cash:hover{transform:translateY(-3px)}
+.btn-cash .arrow{color:#00a33c}
+.cashtag{font-weight:700;color:var(--cream)}
+
+/* CTA */
+.cta{padding:60px 0 120px}
+.cta-box{position:relative;border-radius:32px;overflow:hidden;padding:120px 30px;text-align:center;background:linear-gradient(180deg,rgba(255,159,28,.35) 0%,rgba(13,59,64,.15) 50%,rgba(13,59,64,.45) 100%),url('wave-riders.jpg') center/cover;color:#fff}
+.cta-box .gold-text{background:none;color:#fff}
+.cta-box h2{text-shadow:0 4px 30px rgba(13,59,64,.35)}
+.cta-box .eyebrow{color:#fff}
+.cta-box .eyebrow::before{background:#fff;box-shadow:0 0 12px #fff}
+.cta-box svg.waves{position:absolute;left:0;right:0;bottom:0;width:100%;height:60%;opacity:.5}
+.cta-box h2{position:relative;font-size:clamp(2.4rem,6vw,5rem);font-weight:800;margin-bottom:30px}
+.cta-box .btn{position:relative}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:70px 0 40px;background:linear-gradient(180deg,#fff,#e9faf8)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot h4{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-ink);margin-bottom:18px;font-weight:500}
+.foot ul{list-style:none;display:grid;gap:10px;color:var(--muted)}
+.foot a:hover{color:var(--orange-ink)}
+.foot p{color:var(--muted);max-width:300px;margin-top:16px}
+.giant{font-family:'Unbounded';font-weight:800;font-size:clamp(2rem,8.6vw,8.8rem);line-height:.9;text-align:center;white-space:nowrap;margin-top:60px;color:transparent;-webkit-text-stroke:1.5px rgba(46,196,182,.45);user-select:none;letter-spacing:-.03em}
+.copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:30px;color:var(--muted);font-size:.85rem}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* Responsive */
+@media (max-width:960px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:70px;left:0;right:0;flex-direction:column;gap:18px;padding:26px;border-radius:24px;background:rgba(255,255,255,.98);border:1px solid var(--line)}
+  .burger{display:block}
+  .nav-inner{position:relative}
+  nav .btn{display:none}
+  .logo{white-space:nowrap}
+  .about-grid,.about-sub,.faq-grid,.owner-grid{grid-template-columns:1fr;gap:34px}
+  .owner-chip{left:12px}
+  .gal-track figure{height:260px}
+  .cards,.steps{grid-template-columns:1fr}
+  .stats,.why{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .tag{display:none}
+  .tabs{grid-template-columns:1fr}.tab{border-right:0;border-bottom:1px solid var(--line)}
+  section{padding:90px 0}
+}
+@media (max-width:560px){.stats,.why{grid-template-columns:1fr}.foot{grid-template-columns:1fr}.hero-stage{height:46vh}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo" aria-label="Always True Surf School home">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#FF9F1C" stroke-width="1.5"/><path d="M6 24c4-1 6-8 12-8 5 0 6 5 3 6-2 .6-3-1-2-2M6 28c5 0 8-3 14-3s9 3 14 3" stroke="#FF9F1C" stroke-width="2" stroke-linecap="round"/></svg>
+      ALWAYS TRUE
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#charlie">Meet Charlie</a>
+      <a href="#lessons">Lessons</a>
+      <a href="#process">Process</a>
+      <a href="#why">Why Us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#book" class="btn btn-gold">Book a Lesson <span class="arrow">→</span></a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-top reveal">
+    <span class="eyebrow">Waikīkī surf lessons · Book now, pay later</span>
+    <h1 class="display"><span class="gold-text">Always True</span></h1>
+  </div>
+
+  <div class="hero-stage">
+    <canvas id="wave" aria-label="Interactive 3D wave. Move your mouse or drag to play with it."></canvas>
+    <span class="tag" style="left:2%;top:18%"><i></i>Waikīkī</span>
+    <span class="tag" style="left:8%;top:62%"><i></i>Canoes</span>
+    <span class="tag" style="left:22%;top:88%"><i></i>Queens</span>
+    <span class="tag" style="right:3%;top:22%"><i></i>Ala Moana</span>
+    <span class="tag" style="right:9%;top:66%"><i></i>White Plains</span>
+    <span class="tag" style="right:22%;top:90%"><i></i>Puaʻena</span>
+    <span class="hint">Move · Drag · Make waves</span>
+  </div>
+
+  <div class="hero-bottom reveal d2">
+    <p>Always True Surf School gets you standing, paddling and riding with patient, local instruction — private or in a small group.</p>
+    <div class="hero-ctas">
+      <a href="#book" class="btn btn-gold">Book a Lesson <span class="arrow">→</span></a>
+      <a href="#lessons" class="btn btn-ghost">View Lessons <span class="arrow">↓</span></a>
+    </div>
+    <span class="paylater">✦ $0 due at booking — pay after your lesson</span>
+  </div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee">
+  <p>Every lesson, every level</p>
+  <div class="track" aria-hidden="true">
+    <span>First-Timers</span><span>Kids &amp; Families</span><span>Private 1:1</span><span>Small Groups</span><span>Pop-Up Technique</span><span>Ocean Safety</span><span>Wave Reading</span>
+    <span>First-Timers</span><span>Kids &amp; Families</span><span>Private 1:1</span><span>Small Groups</span><span>Pop-Up Technique</span><span>Ocean Safety</span><span>Wave Reading</span>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="eyebrow">About us</span>
+        <h2 class="display">Meet the crew behind your <span class="gold-text">first wave</span></h2>
+        <p class="lead">We're an Oʻahu surf school built on one idea: stay true to the ocean, stay true to our students. Every lesson is paced to you, taught with aloha, and focused on getting you up and riding safely.</p>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="big gold-text">5 max</div>
+        <p>students per group lesson — so you get real coaching, not a crowd.</p>
+      </div>
+    </div>
+    <div class="about-sub">
+      <h3 class="reveal">Surfing made simple, safe &amp; <span class="gold-text">stoked</span>.</h3>
+      <p class="lead reveal d1">From beach warm-up and pop-up drills to catching green waves, our instructors walk you through each step in the water with you. Book online in a minute and pay after your session — no deposit, no stress.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEET CHARLIE ================= -->
+<section id="charlie" class="owner">
+  <div class="wrap owner-grid">
+    <div class="owner-photo reveal">
+      <img src="charlie-boyd.jpg" alt="Charlie Boyd, owner of Always True Surf School, holding his surfboard on Waikīkī beach" id="charliePic">
+      <div class="owner-chip"><b class="gold-text">33</b><span>years<br>surfing</span></div>
+    </div>
+    <div class="reveal d1">
+      <span class="eyebrow">Meet the owner</span>
+      <h2 class="display">Charlie <span class="gold-text">Boyd</span><span class="sig">Owner · Always True Surf School</span></h2>
+      <p class="bio">Born and raised on Oʻahu. Thirty-three years in the water. Charlie isn't just teaching surfing — he's sharing the place that raised him.</p>
+      <p class="bio">He keeps it simple: respect the ocean, have fun, and stay true to yourself out there. Whether it's your first wave or your hundredth, Charlie will have you paddling out with confidence and coming in with a grin.</p>
+      <div class="facts">
+        <div class="fact"><b class="gold-text">33</b><span>Years surfing</span></div>
+        <div class="fact"><b class="gold-text">808</b><span>Born &amp; raised Oʻahu</span></div>
+        <div class="fact"><b class="gold-text">100%</b><span>Aloha</span></div>
+      </div>
+      <div class="owner-ctas"><a href="#book" class="btn btn-gold">Surf with Charlie <span class="arrow">→</span></a><a href="https://www.instagram.com/vlwaystrue/" target="_blank" rel="noopener" class="btn btn-ghost"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Follow @vlwaystrue</a></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <figure class="owner-banner reveal">
+      <img src="charlie-sunset-headstand.jpg" alt="Charlie Boyd doing a headstand on his surfboard at sunset off Waikīkī" loading="lazy">
+      <figcaption><span>Sunset session · Waikīkī</span><b>33 years in, and the ocean still feels like home.</b></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= LESSONS ================= -->
+<section id="lessons">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Our lessons</span>
+      <h2 class="display">Pick your <span class="gold-text">session</span></h2>
+      <p class="lead">Simple pricing. Book now and pay later.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-img"><img src="tandem-lesson.jpg" alt="Instructor riding a wave alongside a student" loading="lazy"></div>
+        <span class="num">//01</span>
+        <h3>Private Lesson<br>60 Minutes</h3>
+        <p>One-on-one coaching with your own instructor. Perfect for a focused first session or sharpening your pop-up.</p>
+        <div class="price gold-text">$90 <small>/ 60 min</small></div>
+        <div class="pills"><span>1:1 instructor</span><span>All levels</span></div>
+        <a href="#book" class="btn btn-ghost" data-lesson="private60">Book now <span class="arrow">→</span></a>
+      </article>
+      <article class="card featured reveal d1">
+        <span class="badge">Best value</span>
+        <div class="card-img"><img src="paddle-out.jpg" alt="Smiling surfer paddling out" loading="lazy"></div>
+        <span class="num">//02</span>
+        <h3>Private Lesson<br>90 Minutes</h3>
+        <p>More waves, more time to progress. Ideal if you want to leave riding confidently on your own.</p>
+        <div class="price gold-text">$130 <small>/ 90 min</small></div>
+        <div class="pills"><span>1:1 instructor</span><span>Extra water time</span></div>
+        <a href="#book" class="btn btn-gold" data-lesson="private90">Book now <span class="arrow">→</span></a>
+      </article>
+      <article class="card reveal d2">
+        <div class="card-img"><img src="crew.jpg" alt="Three surfers smiling in the water with their boards" loading="lazy"></div>
+        <span class="num">//03</span>
+        <h3>Group Lesson<br>Up to 5 People</h3>
+        <p>Surf with friends, family or new buddies. Small groups keep it social while you still get hands-on help.</p>
+        <div class="price gold-text">$80 <small>/ person</small></div>
+        <div class="pills"><span>Max 5 people</span><span>Great for families</span></div>
+        <a href="#book" class="btn btn-ghost" data-lesson="group">Book now <span class="arrow">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<div class="gallery" id="gallery">
+  <div class="wrap center reveal" style="margin-bottom:46px">
+    <span class="eyebrow">Life on the water</span>
+    <h2 class="display">Real days in <span class="gold-text">Waikīkī</span></h2>
+  </div>
+  <div class="center" style="margin:-20px 0 40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.instagram.com/vlwaystrue/" target="_blank" rel="noopener" class="btn btn-ghost"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> More on Instagram</a>
+    <a href="https://www.youtube.com/@vlwaystrue" target="_blank" rel="noopener" class="btn btn-ghost"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10 15.1V8.9l5.2 3.1z"/></svg> Watch on YouTube</a>
+  </div>
+  <div class="gal-track" id="galTrack">
+    <figure><img src="wave-riders.jpg" alt="Surfers riding a clear turquoise wave" loading="lazy"><figcaption>Party wave</figcaption></figure>
+    <figure><img src="tandem-lesson.jpg" alt="Instructor and student riding a wave together" loading="lazy"><figcaption>Standing up</figcaption></figure>
+    <figure><img src="charlie-boyd.jpg" alt="Charlie Boyd on the beach with his board" loading="lazy"><figcaption>Charlie</figcaption></figure>
+    <figure><img src="charlie-sunset-headstand.jpg" alt="Headstand on a surfboard at sunset" loading="lazy"><figcaption>Sunset session</figcaption></figure>
+    <figure><img src="paddle-out.jpg" alt="Surfers paddling out" loading="lazy"><figcaption>Paddle out</figcaption></figure>
+    <figure><img src="crew.jpg" alt="Surf crew smiling in the water" loading="lazy"><figcaption>The crew</figcaption></figure>
+  </div>
+</div>
+
+<!-- ================= PROCESS ================= -->
+<section id="process" class="process">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 class="display">From shore to <span class="gold-text">shred</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h3>Book online</h3><p>Choose private or group, pick a time that works, and you're set. Nothing to pay up front.</p></div>
+      <div class="step reveal d1"><div class="n">02</div><h3>Meet on the beach</h3><p>We'll confirm the meet-up spot. Beach warm-up, safety talk and pop-up practice on the sand.</p></div>
+      <div class="step reveal d2"><div class="n">03</div><h3>Ride, then pay</h3><p>Hit the water and catch waves with your instructor. Settle up after your lesson.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IMPACT ================= -->
+<section id="impact">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">By the numbers</span>
+      <h2 class="display">Built around <span class="gold-text">you</span></h2>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><div class="v gold-text"><span class="count" data-to="0" data-prefix="$">$0</span></div><p>Due at booking</p></div>
+      <div class="stat reveal d1"><div class="v gold-text"><span class="count" data-to="1" data-suffix=":1">0</span></div><p>Private coaching ratio</p></div>
+      <div class="stat reveal d2"><div class="v gold-text"><span class="count" data-to="5">0</span></div><p>Max students per group</p></div>
+      <div class="stat reveal d3"><div class="v gold-text"><span class="count" data-to="90" data-suffix="m">0</span></div><p>Longest session option</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section id="why">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Why choose us</span>
+      <h2 class="display">Lessons that stay <span class="gold-text">true</span></h2>
+    </div>
+    <div class="why">
+      <div class="item reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><span class="tagn">-01</span><h3>Safety first</h3><p>Ocean awareness and conditions are part of every lesson.</p></div>
+      <div class="item reveal d1"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg></div><span class="tagn">-02</span><h3>Personal coaching</h3><p>Private 1:1 or tiny groups — never a crowded class.</p></div>
+      <div class="item reveal d2"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><span class="tagn">-03</span><h3>Easy booking</h3><p>Pick a time online in under a minute.</p></div>
+      <div class="item reveal d3"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="13" rx="3"/><path d="M2 11h20M6 15h4"/></svg></div><span class="tagn">-04</span><h3>Pay later</h3><p>No deposit. Pay after you've been in the water.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section id="reviews">
+  <div class="wrap center reveal">
+    <span class="eyebrow">Reviews</span>
+    <h2 class="display">What our <span class="gold-text">students</span> say</h2>
+  </div>
+  <div class="tslider">
+    <div class="ttrack" id="ttrack"></div>
+  </div>
+  <div class="rv-empty" id="rvEmpty">
+    <div class="stars" style="font-size:1.6rem">★★★★★</div>
+    <h3>Be the first to share your wave</h3>
+    <p>Surfed with us? We'd love to hear how it went.</p>
+  </div>
+  <div class="center" style="margin-top:34px"><a href="review.html" class="btn btn-gold">Write a Review <span class="arrow">→</span></a></div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap faq-grid">
+    <div class="reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="display">Frequently asked <span class="gold-text">questions</span></h2>
+      <p class="lead">Can't find your answer? Reach out at vlwaystrue808@gmail.com.</p>
+    </div>
+    <div class="acc reveal d1" id="acc">
+      <div class="q open"><button>Do I have to pay when I book?<span class="pm">+</span></button><div class="a"><div><p>No. Book now, pay later — reserve your spot online with $0 due, and pay after your lesson.</p></div></div></div>
+      <div class="q"><button>How much do lessons cost?<span class="pm">+</span></button><div class="a"><div><p>Private lessons are $90 for 60 minutes or $130 for 90 minutes. Group lessons are $80 per person, up to 5 people.</p></div></div></div>
+      <div class="q"><button>I've never surfed. Is that okay?<span class="pm">+</span></button><div class="a"><div><p>Absolutely. Most of our students are beginners. We start on the sand with safety and pop-up practice before heading into the water.</p></div></div></div>
+      <div class="q"><button>How many people are in a group lesson?<span class="pm">+</span></button><div class="a"><div><p>Group lessons are capped at 5 people so everyone gets real attention from the instructor.</p></div></div></div>
+      <div class="q"><button>Where do we meet?<span class="pm">+</span></button><div class="a"><div><p>Meeting details are sent with your booking confirmation. Spots may change based on surf conditions so you always get the best beginner-friendly waves.</p></div></div></div>
+      <div class="q"><button>What should I bring?<span class="pm">+</span></button><div class="a"><div><p>Swimwear, reef-safe sunscreen, a towel and water. Arrive about 10 minutes early.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOKING ================= -->
+<section id="book" class="booking">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Book now · Pay later</span>
+      <h2 class="display">Reserve your <span class="gold-text">lesson</span></h2>
+      <p class="lead">Pick a lesson, choose a time, done. No payment needed today.</p>
+    </div>
+    <div class="book-shell reveal d1">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-lesson="private60" role="tab"><b>Private · 60 min</b><span class="tp">$90</span> · 1:1</button>
+        <button class="tab" data-lesson="private90" role="tab"><b>Private · 90 min</b><span class="tp">$130</span> · 1:1</button>
+        <button class="tab" data-lesson="group" role="tab"><b>Group · up to 5</b><span class="tp">$80</span> / person</button>
+      </div>
+      <div id="calendly-embed"></div>
+      <div class="fallback" id="fallback">
+        <h3 id="fbTitle">Private Lesson · 60 min</h3>
+        <p>Our booking calendar opens in a new tab. Pick your time — nothing to pay until after your lesson.</p>
+        <a id="fbLink" href="#" target="_blank" rel="noopener" class="btn btn-gold">Open booking calendar <span class="arrow">→</span></a>
+      </div>
+      <div class="payrow">
+        <div><h4>After your lesson: pay with Cash App</h4><p>No payment at booking. When your session's done, send payment to <span class="cashtag js-cashtag"></span>.</p></div>
+        <a class="btn btn-cash js-cashlink" href="#" target="_blank" rel="noopener">Pay with Cash App <span class="arrow">→</span></a>
+      </div>
+      <div class="book-foot"><span>✦ <b>$0 due today</b> — pay after your lesson</span><span>Questions? vlwaystrue808@gmail.com</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <svg class="waves" viewBox="0 0 1200 300" preserveAspectRatio="none">
+        <path fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1.5" d="M0 180 C 200 120 400 240 600 180 S 1000 120 1200 180"/>
+        <path fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="1.5" d="M0 220 C 200 160 400 280 600 220 S 1000 160 1200 220"/>
+        <path fill="rgba(255,255,255,.25)" d="M0 260 C 200 200 400 320 600 260 S 1000 200 1200 260 V300 H0Z"/>
+      </svg>
+      <span class="eyebrow">Your wave is waiting</span>
+      <h2 class="display" style="margin-top:20px">Paddle out with<br><span class="gold-text">Always True</span></h2>
+      <a href="#book" class="btn btn-gold">Book a Lesson — Pay Later <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#FF9F1C" stroke-width="1.5"/><path d="M6 24c4-1 6-8 12-8 5 0 6 5 3 6-2 .6-3-1-2-2M6 28c5 0 8-3 14-3s9 3 14 3" stroke="#FF9F1C" stroke-width="2" stroke-linecap="round"/></svg>ALWAYS TRUE</a>
+        <p>Private and group surf lessons on Oʻahu. Book now, pay later.</p>
+        <div class="socials"><a href="https://www.instagram.com/vlwaystrue/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/@vlwaystrue" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10 15.1V8.9l5.2 3.1z"/></svg></a></div>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#lessons">Lessons</a></li><li><a href="#process">Process</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="review.html">Leave a Review</a></li></ul></div>
+      <div><h4>Lessons</h4><ul><li><a href="#book" data-lesson="private60">Private 60 · $90</a></li><li><a href="#book" data-lesson="private90">Private 90 · $130</a></li><li><a href="#book" data-lesson="group">Group · $80/pp</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>vlwaystrue808@gmail.com</li><li><a class="js-cashlink" href="#" target="_blank" rel="noopener">Pay with Cash App</a></li><li><a href="https://www.instagram.com/vlwaystrue/" target="_blank" rel="noopener">Instagram @vlwaystrue</a></li><li><a href="https://www.youtube.com/@vlwaystrue" target="_blank" rel="noopener">YouTube @vlwaystrue</a></li></ul></div>
+    </div>
+    <div class="giant">ALWAYS TRUE</div>
+    <div class="copy"><span>© 2026 Always True Surf School. All rights reserved.</span><span>Made with aloha in Waikīkī</span></div>
+  </div>
+</footer>
+
+<script src="reviews-config.js"></script>
+<script src="reviews.js"></script>
+<script>
+/* =========================================================
+   CALENDLY SETUP — edit these to match your Calendly account
+   (account: vlwaystrue808@gmail.com)
+   ========================================================= */
+/* CASH APP — put your $Cashtag here (with the $) */
+const CASHTAG = "$YourCashtag";
+document.querySelectorAll(".js-cashtag").forEach(el=>el.textContent=CASHTAG);
+document.querySelectorAll(".js-cashlink").forEach(el=>el.href="https://cash.app/"+CASHTAG);
+if(/YourCashtag/.test(CASHTAG)){document.querySelectorAll(".payrow").forEach(el=>el.style.display="none");document.querySelectorAll(".js-cashlink").forEach(el=>el.closest("li")&&el.closest("li").remove());}
+
+const CALENDLY_USER = "https://calendly.com/vlwaystrue808";
+const LESSONS = {
+  private60: { name: "Private Lesson · 60 min", url: CALENDLY_USER + "/30min" },
+  private90: { name: "Private Lesson · 90 min", url: CALENDLY_USER + "/private-surf-lesson-90min" },
+  group:     { name: "Group Lesson · up to 5",  url: CALENDLY_USER + "/group-surf-lesson" }
+};
+const CAL_COLORS = "?hide_gdpr_banner=1&background_color=ffffff&text_color=0d3b40&primary_color=2ec4b6";
+
+let current = "private60", calReady = false;
+const embed = document.getElementById("calendly-embed");
+const fb = document.getElementById("fallback");
+
+function showLesson(key){
+  current = key;
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active", t.dataset.lesson===key));
+  const L = LESSONS[key];
+  document.getElementById("fbTitle").textContent = L.name;
+  document.getElementById("fbLink").href = L.url;
+  if (calReady && window.Calendly){
+    embed.innerHTML = "";
+    Calendly.initInlineWidget({ url: L.url + CAL_COLORS, parentElement: embed });
+  }
+}
+function useFallback(){ embed.style.display="none"; fb.classList.add("show"); }
+
+// Load Calendly widget script; fall back to a link if it can't load
+(function(){
+  const s = document.createElement("script");
+  s.src = "https://assets.calendly.com/assets/external/widget.js";
+  s.async = true;
+  s.onload = ()=>{ calReady = true; showLesson(current); };
+  s.onerror = useFallback;
+  document.head.appendChild(s);
+  setTimeout(()=>{ if(!calReady) useFallback(); }, 4000);
+})();
+showLesson(current);
+
+document.querySelectorAll("[data-lesson]").forEach(el=>{
+  el.addEventListener("click", ()=> showLesson(el.dataset.lesson));
+});
+
+/* ================= UI interactions ================= */
+const nav = document.getElementById("nav");
+addEventListener("scroll", ()=> nav.classList.toggle("scrolled", scrollY>40), {passive:true});
+document.getElementById("burger").onclick = ()=> document.getElementById("navLinks").classList.toggle("open");
+document.querySelectorAll("#navLinks a").forEach(a=>a.onclick=()=>document.getElementById("navLinks").classList.remove("open"));
+
+// Reveal + count-up
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return;
+  e.target.classList.add("in");
+  e.target.querySelectorAll(".count").forEach(countUp);
+  io.unobserve(e.target);
+}),{threshold:.15});
+document.querySelectorAll(".reveal,.step").forEach(el=>io.observe(el));
+function countUp(el){
+  const to=+el.dataset.to, pre=el.dataset.prefix||"", suf=el.dataset.suffix||"", t0=performance.now(), d=1600;
+  (function f(t){const p=Math.min(1,(t-t0)/d), v=Math.round(to*(1-Math.pow(1-p,3)));el.textContent=pre+v+suf;if(p<1)requestAnimationFrame(f)})(t0);
+}
+
+// Card spotlight
+document.querySelectorAll(".card").forEach(c=>c.addEventListener("pointermove",e=>{
+  const r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px");
+}));
+
+// Accordion
+document.querySelectorAll(".q button").forEach(b=>b.onclick=()=>{
+  const q=b.parentElement, was=q.classList.contains("open");
+  document.querySelectorAll(".q").forEach(x=>x.classList.remove("open"));
+  if(!was) q.classList.add("open");
+});
+
+// Duplicate testimonials for seamless loop
+if(window.ATReviews) ATReviews.render(document.getElementById("ttrack"), document.getElementById("rvEmpty"));
+const gt=document.getElementById("galTrack"); gt.innerHTML += gt.innerHTML;
+// Charlie photo tilt
+const cp=document.getElementById("charliePic");
+cp.parentElement.addEventListener("pointermove",e=>{const r=cp.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;cp.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`});
+cp.parentElement.addEventListener("pointerleave",()=>cp.style.transform="");
+</script>
+
+<!-- ================= INTERACTIVE 3D WAVE (pure WebGL, no libraries) ================= -->
+<script>
+(function(){
+  const canvas=document.getElementById("wave");
+  const gl=canvas.getContext("webgl",{antialias:true,premultipliedAlpha:false,alpha:true});
+  if(!gl) return;
+  const W=14,D=7,SX=220,SZ=110,LX=70,LZ=28;
+
+  const VERT=`
+    attribute vec2 aPos;
+    uniform mat4 uMVP; uniform float uTime; uniform vec2 uMouse; uniform float uRipple; uniform float uPt;
+    varying float vH; varying float vFoam; varying float vDepth;
+    void main(){
+      float x=aPos.x, z=aPos.y, t=uTime;
+      vec3 p=vec3(x,0.,z);
+      float cyc=mod(t*0.11,1.0);
+      float crestPos=mix(-6.5,6.5,cyc);
+      float life=smoothstep(0.,.18,cyc)*smoothstep(1.,.8,cyc);
+      float dx=x-crestPos+z*0.35;
+      float h=exp(-dx*dx*(dx>0.?0.55:0.12))*(0.75+0.25*sin(z*0.6+t*0.5))*2.4*life;
+      float curl=smoothstep(1.2,2.1,h);
+      p.x+=curl*0.9*sin(curl*3.14159);
+      p.y+=curl*0.35;
+      h+=sin(x*0.9+t*1.6)*0.22+sin(z*1.4-t*1.1)*0.18+sin((x+z)*2.3+t*2.4)*0.06;
+      float md=distance(vec2(x,z),uMouse);
+      h+=sin(md*3.2-t*7.0)*exp(-md*0.55)*0.55*uRipple;
+      p.y+=h;
+      vH=h; vFoam=curl+smoothstep(1.6,2.4,h); vDepth=(z+3.5)/7.0;
+      gl_Position=uMVP*vec4(p,1.0);
+      gl_PointSize=uPt*(3.0+vFoam*3.0)*(10.0/gl_Position.w);
+    }`;
+  const FRAG_PTS=`
+    precision mediump float;
+    varying float vH; varying float vFoam; varying float vDepth;
+    void main(){
+      vec2 c=gl_PointCoord-.5; float d=length(c); if(d>.5) discard;
+      float a=smoothstep(.5,.0,d), k=clamp(vH/2.2,0.,1.);
+      vec3 deep=vec3(.05,.45,.43), burg=vec3(.18,.77,.71), gold=vec3(1.,.749,.412), gold2=vec3(1.,.624,.11);
+      vec3 col=mix(deep,burg,smoothstep(-.4,.4,vH));
+      col=mix(col,gold,smoothstep(.45,1.2,vH));
+      col=mix(col,gold2,clamp(vFoam,0.,1.));
+      float fade=smoothstep(0.,.12,vDepth)*smoothstep(1.,.85,vDepth);
+      gl_FragColor=vec4(col,a*(.8+k*.2)*fade);
+    }`;
+  const FRAG_LINES=`
+    precision mediump float;
+    varying float vH; varying float vFoam; varying float vDepth;
+    void main(){
+      float fade=smoothstep(0.,.25,vDepth)*smoothstep(1.,.7,vDepth);
+      gl_FragColor=vec4(mix(vec3(.18,.77,.71),vec3(1.,.624,.11),smoothstep(.2,1.6,vH)),.22*fade);
+    }`;
+  function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(s));return s}
+  function prog(f){const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,VERT));gl.attachShader(p,sh(gl.FRAGMENT_SHADER,f));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(p));return p}
+  const pPts=prog(FRAG_PTS), pLines=prog(FRAG_LINES);
+
+  function grid(nx,nz){const a=[];for(let j=0;j<=nz;j++)for(let i=0;i<=nx;i++)a.push(-W/2+W*i/nx,-D/2+D*j/nz);return new Float32Array(a)}
+  const ptsBuf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,ptsBuf);const ptsData=grid(SX,SZ);gl.bufferData(gl.ARRAY_BUFFER,ptsData,gl.STATIC_DRAW);
+  const lineBuf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,lineBuf);gl.bufferData(gl.ARRAY_BUFFER,grid(LX,LZ),gl.STATIC_DRAW);
+  const idx=[];for(let j=0;j<=LZ;j++)for(let i=0;i<=LX;i++){const k=j*(LX+1)+i;if(i<LX)idx.push(k,k+1);if(j<LZ)idx.push(k,k+LX+1)}
+  const idxBuf=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,idxBuf);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(idx),gl.STATIC_DRAW);
+
+  // --- tiny mat4 helpers (column-major) ---
+  const mul=(a,b)=>{const o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+r]*b[c*4+k];o[c*4+r]=s}return o};
+  const persp=(f,asp,n,fa)=>{const t=1/Math.tan(f/2);return new Float32Array([t/asp,0,0,0,0,t,0,0,0,0,(fa+n)/(n-fa),-1,0,0,2*fa*n/(n-fa),0])};
+  const look=(e,c)=>{let z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]];let l=Math.hypot(...z);z=z.map(v=>v/l);let x=[z[2],0,-z[0]];l=Math.hypot(...x);x=x.map(v=>v/l);const y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+    return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]),-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]),-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]),1])};
+  const rotX=a=>{const c=Math.cos(a),s=Math.sin(a);return new Float32Array([1,0,0,0,0,c,s,0,0,-s,c,0,0,0,0,1])};
+  const rotY=a=>{const c=Math.cos(a),s=Math.sin(a);return new Float32Array([c,0,-s,0,0,1,0,0,s,0,c,0,0,0,0,1])};
+
+  // --- interaction ---
+  let tx=0,ty=0,rx=0,ry=0,drag=false,lx=0,dragY=0,targetR=0,ripple=0,camZ=9.5,mvp=null;
+  const mouse=[99,99];
+  function ndc(e){const r=canvas.getBoundingClientRect();return[((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1]}
+  function pick(n){ // project the grid and take the nearest point to the cursor
+    if(!mvp) return; let best=1e9,bx=99,bz=99;
+    for(let i=0;i<ptsData.length;i+=8){const x=ptsData[i],z=ptsData[i+1];
+      const cx=mvp[0]*x+mvp[8]*z+mvp[12],cy=mvp[1]*x+mvp[9]*z+mvp[13],cw=mvp[3]*x+mvp[11]*z+mvp[15];
+      const d=(cx/cw-n[0])**2+(cy/cw-n[1])**2; if(d<best){best=d;bx=x;bz=z}}
+    mouse[0]=bx;mouse[1]=bz;
+  }
+  canvas.addEventListener("pointermove",e=>{const n=ndc(e);tx=n[0];ty=n[1];if(drag){dragY+=(e.clientX-lx)*0.006;lx=e.clientX}pick(n);targetR=1});
+  canvas.addEventListener("pointerdown",e=>{drag=true;lx=e.clientX;try{canvas.setPointerCapture(e.pointerId)}catch(_){}targetR=1.8;pick(ndc(e))});
+  addEventListener("pointerup",()=>{drag=false;targetR=targetR?1:0});
+  canvas.addEventListener("pointerleave",()=>{if(!drag){targetR=0;tx=ty=0}});
+
+  function resize(){const dpr=Math.min(devicePixelRatio,2),w=canvas.clientWidth,h=canvas.clientHeight;canvas.width=w*dpr;canvas.height=h*dpr;gl.viewport(0,0,canvas.width,canvas.height);camZ=w<600?13:9.5}
+  addEventListener("resize",resize);resize();
+
+  gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.disable(gl.DEPTH_TEST);
+  function bind(p,buf,t){gl.useProgram(p);gl.bindBuffer(gl.ARRAY_BUFFER,buf);const l=gl.getAttribLocation(p,"aPos");gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0);
+    gl.uniformMatrix4fv(gl.getUniformLocation(p,"uMVP"),false,mvp);gl.uniform1f(gl.getUniformLocation(p,"uTime"),t);gl.uniform2fv(gl.getUniformLocation(p,"uMouse"),mouse);
+    gl.uniform1f(gl.getUniformLocation(p,"uRipple"),ripple);gl.uniform1f(gl.getUniformLocation(p,"uPt"),Math.min(devicePixelRatio,2))}
+  const t0=performance.now();
+  (function loop(){
+    const t=(performance.now()-t0)/1000;
+    ripple+=(targetR-ripple)*0.05; rx+=(ty*0.18-rx)*0.05; ry+=(tx*0.35+dragY-ry)*0.05;
+    const P=persp(42*Math.PI/180,canvas.width/canvas.height,.1,100), V=look([0,4.6,camZ],[0,.4,0]);
+    mvp=mul(P,mul(V,mul(rotX(rx),rotY(ry))));
+    gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+    bind(pLines,lineBuf,t);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,idxBuf);gl.drawElements(gl.LINES,idx.length,gl.UNSIGNED_SHORT,0);
+    bind(pPts,ptsBuf,t);gl.drawArrays(gl.POINTS,0,ptsData.length/2);
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
